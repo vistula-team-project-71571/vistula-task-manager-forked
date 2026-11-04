@@ -51,27 +51,41 @@ function renderTasks(tasks) {
     item.className = `task-item ${task.completed ? 'completed' : ''}`;
     item.setAttribute('data-id', task.id);
 
-    item.innerHTML = `
-      <h3 class="task-title">${escapeHtml(task.title)}</h3>
-      <p class="task-description">${escapeHtml(task.description || '')}</p>
-      <p>Status: <span class="task-status">${task.completed ? 'Completed' : 'Incomplete'}</span></p>
-      <button class="toggle-task">${task.completed ? 'Mark Incomplete' : 'Mark Complete'}</button>
-      <button class="edit-task">Edit</button>
-      <button class="delete-task">Delete</button>
-    `;
+    const titleEl = document.createElement('h3');
+    titleEl.className = 'task-title';
+    titleEl.textContent = task.title;
 
-    item.querySelector('.toggle-task').addEventListener('click', () => toggleTask(task));
-    item.querySelector('.edit-task').addEventListener('click', () => startEditing(task));
-    item.querySelector('.delete-task').addEventListener('click', () => deleteTask(task.id));
+    const descEl = document.createElement('p');
+    descEl.className = 'task-description';
+    descEl.textContent = task.description || '';
+
+    const statusEl = document.createElement('p');
+    statusEl.innerHTML = `Status: <span class="task-status">${task.completed ? 'Completed' : 'Incomplete'}</span>`;
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'toggle-task';
+    toggleBtn.textContent = task.completed ? 'Mark Incomplete' : 'Mark Complete';
+    toggleBtn.addEventListener('click', () => toggleTask(task));
+
+    const editBtn = document.createElement('button');
+    editBtn.className = 'edit-task';
+    editBtn.textContent = 'Edit';
+    editBtn.addEventListener('click', () => startEditing(task));
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete-task';
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.addEventListener('click', () => deleteTask(task.id));
+
+    item.appendChild(titleEl);
+    item.appendChild(descEl);
+    item.appendChild(statusEl);
+    item.appendChild(toggleBtn);
+    item.appendChild(editBtn);
+    item.appendChild(deleteBtn);
 
     taskList.appendChild(item);
   });
-}
-
-function escapeHtml(str) {
-  return str.replace(/[&<>"']/g, m => ({
-    '&': '&', '<': '<', '>': '>', '"': '"', "'": '''
-  }[m]));
 }
 
 taskForm.addEventListener('submit', async (e) => {
