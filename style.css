@@ -1,51 +1,263 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  max-width: 650px;
-  margin: 30px auto;
-  padding: 0 16px;
-  line-height: 1.5;
-  color: #222;
+:root {
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --success: #16a34a;
+  --success-bg: #dcfce7;
+  --warning: #d97706;
+  --warning-bg: #fef3c7;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --border: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --radius: 10px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
 }
 
-form > div {
-  margin-bottom: 12px;
-}
-
-input[type="text"], textarea {
-  width: 100%;
+* {
   box-sizing: border-box;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-main);
+  line-height: 1.6;
+  padding: 40px 16px;
+}
+
+header, main {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+header {
+  margin-bottom: 24px;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+header div {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+#student-id {
+  font-weight: 600;
+  color: var(--primary);
+  background-color: #eef2ff;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+#contribution-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--primary);
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+#contribution-link:hover {
+  text-decoration: underline;
+}
+
+#task-form {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+
+#task-form > div {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  font-size: 0.95rem;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  font-family: inherit;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
 }
 
 button {
-  padding: 6px 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
   cursor: pointer;
-  margin-right: 5px;
-  border: 1px solid #999;
-  border-radius: 4px;
-  background-color: #f7f7f7;
+  transition: background-color 0.15s ease, transform 0.05s ease;
 }
 
-button:hover {
-  background-color: #eee;
+button:active {
+  transform: scale(0.98);
+}
+
+#task-submit {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+#task-submit:hover {
+  background-color: var(--primary-hover);
+}
+
+#cancel-edit {
+  background-color: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+#cancel-edit:hover {
+  background-color: #f1f5f9;
+}
+
+#status-message {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  display: none;
+}
+
+#status-message:not(:empty) {
+  display: block;
+  background-color: #fef2f2;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 16px;
 }
 
 .task-item {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 12px;
-  margin-bottom: 12px;
-  background-color: #fff;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+  transition: border-color 0.15s ease;
+}
+
+.task-item:hover {
+  border-color: #cbd5e1;
+}
+
+.task-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-main);
+}
+
+.task-description {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  white-space: pre-line;
+}
+
+.task-item p:has(.task-status) {
+  margin-bottom: 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.task-status {
+  padding: 3px 8px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: var(--warning-bg);
+  color: var(--warning);
+}
+
+.task-item.completed .task-status {
+  background-color: var(--success-bg);
+  color: var(--success);
 }
 
 .task-item.completed .task-title {
   text-decoration: line-through;
-  color: #888;
+  color: #94a3b8;
 }
 
-#status-message {
-  margin: 12px 0;
-  font-weight: 500;
+.task-item.completed .task-description {
+  color: #cbd5e1;
+}
+
+.toggle-task {
+  background-color: #f1f5f9;
+  color: var(--text-main);
+  margin-right: 8px;
+}
+
+.toggle-task:hover {
+  background-color: #e2e8f0;
+}
+
+.edit-task {
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  margin-right: 8px;
+}
+
+.edit-task:hover {
+  background-color: #f8fafc;
+}
+
+.delete-task {
+  background-color: transparent;
+  color: var(--danger);
+  border: 1px solid transparent;
+}
+
+.delete-task:hover {
+  background-color: #fef2f2;
 }
