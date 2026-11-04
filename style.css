@@ -1,19 +1,20 @@
 :root {
-  --primary: #4f46e5;
-  --primary-hover: #4338ca;
-  --success: #16a34a;
-  --success-bg: #dcfce7;
-  --warning: #d97706;
-  --warning-bg: #fef3c7;
-  --danger: #dc2626;
-  --danger-hover: #b91c1c;
-  --bg: #f8fafc;
-  --card-bg: #ffffff;
-  --border: #e2e8f0;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --radius: 10px;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --border-color: #30363d;
+  --cyan-accent: #00f2fe;
+  --cyan-glow: rgba(0, 242, 254, 0.2);
+  --cyan-hover: #4facfe;
+  --text-main: #f0f6fc;
+  --text-muted: #8b949e;
+  --success: #3fb950;
+  --success-bg: rgba(63, 185, 80, 0.15);
+  --warning: #e3b341;
+  --warning-bg: rgba(227, 179, 65, 0.15);
+  --danger: #f85149;
+  --danger-bg: rgba(248, 81, 73, 0.15);
+  --radius: 8px;
 }
 
 * {
@@ -23,8 +24,8 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  background-color: var(--bg-primary);
   color: var(--text-main);
   line-height: 1.6;
   padding: 40px 16px;
@@ -37,14 +38,18 @@ header, main {
 
 header {
   margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 h1 {
   font-size: 2rem;
   font-weight: 700;
-  letter-spacing: -0.5px;
   color: var(--text-main);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  background: linear-gradient(90deg, #f0f6fc 0%, var(--cyan-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 header div {
@@ -53,32 +58,36 @@ header div {
 }
 
 #student-id {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   font-weight: 600;
-  color: var(--primary);
-  background-color: #eef2ff;
+  color: var(--cyan-accent);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   padding: 2px 8px;
   border-radius: 6px;
 }
 
 #contribution-link {
   display: inline-block;
-  margin-top: 8px;
-  color: var(--primary);
+  margin-top: 10px;
+  color: var(--cyan-accent);
   font-weight: 500;
   text-decoration: none;
   font-size: 0.9rem;
+  transition: color 0.15s ease;
 }
 
 #contribution-link:hover {
+  color: var(--cyan-hover);
   text-decoration: underline;
 }
 
 #task-form {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 24px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   margin-bottom: 24px;
 }
 
@@ -90,7 +99,7 @@ label {
   display: block;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--text-muted);
   margin-bottom: 6px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -101,9 +110,10 @@ textarea {
   width: 100%;
   font-size: 0.95rem;
   padding: 10px 14px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
   font-family: inherit;
 }
@@ -111,8 +121,8 @@ textarea {
 input[type="text"]:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+  border-color: var(--cyan-accent);
+  box-shadow: 0 0 0 3px var(--cyan-glow);
 }
 
 textarea {
@@ -125,9 +135,9 @@ button {
   font-weight: 500;
   padding: 8px 16px;
   border-radius: 6px;
-  border: none;
+  border: 1px solid var(--border-color);
   cursor: pointer;
-  transition: background-color 0.15s ease, transform 0.05s ease;
+  transition: all 0.15s ease;
 }
 
 button:active {
@@ -135,62 +145,66 @@ button:active {
 }
 
 #task-submit {
-  background-color: var(--primary);
-  color: #fff;
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  color: #04101c;
+  font-weight: 600;
+  border: none;
 }
 
 #task-submit:hover {
-  background-color: var(--primary-hover);
+  box-shadow: 0 0 12px var(--cyan-glow);
+  opacity: 0.95;
 }
 
 #cancel-edit {
-  background-color: transparent;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
+  background-color: var(--bg-tertiary);
+  color: var(--text-main);
 }
 
 #cancel-edit:hover {
-  background-color: #f1f5f9;
+  background-color: #30363d;
 }
 
 #status-message {
   padding: 10px 14px;
-  border-radius: 6px;
+  border-radius: var(--radius);
   font-size: 0.9rem;
   margin-bottom: 20px;
   display: none;
+  border: 1px solid var(--border-color);
 }
 
 #status-message:not(:empty) {
   display: block;
-  background-color: #fef2f2;
+  background-color: var(--bg-secondary);
 }
 
 h2 {
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 16px;
+  color: var(--text-main);
 }
 
 .task-item {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 20px;
   margin-bottom: 14px;
-  box-shadow: var(--shadow);
-  transition: border-color 0.15s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .task-item:hover {
-  border-color: #cbd5e1;
+  border-color: var(--cyan-accent);
+  box-shadow: 0 0 8px var(--cyan-glow);
 }
 
 .task-title {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 6px;
-  color: var(--text-main);
+  color: #ffffff;
 }
 
 .task-description {
@@ -203,11 +217,11 @@ h2 {
 .task-item p:has(.task-status) {
   margin-bottom: 14px;
   font-size: 0.85rem;
-  font-weight: 500;
+  color: var(--text-muted);
 }
 
 .task-status {
-  padding: 3px 8px;
+  padding: 3px 10px;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -215,49 +229,52 @@ h2 {
   letter-spacing: 0.5px;
   background-color: var(--warning-bg);
   color: var(--warning);
+  border: 1px solid rgba(227, 179, 65, 0.3);
 }
 
 .task-item.completed .task-status {
   background-color: var(--success-bg);
   color: var(--success);
+  border-color: rgba(63, 185, 80, 0.3);
 }
 
 .task-item.completed .task-title {
   text-decoration: line-through;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .task-item.completed .task-description {
-  color: #cbd5e1;
+  color: #484f58;
 }
 
 .toggle-task {
-  background-color: #f1f5f9;
+  background-color: var(--bg-tertiary);
   color: var(--text-main);
   margin-right: 8px;
 }
 
 .toggle-task:hover {
-  background-color: #e2e8f0;
+  background-color: #30363d;
+  border-color: var(--cyan-accent);
 }
 
 .edit-task {
   background-color: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-main);
+  color: var(--cyan-accent);
+  border: 1px solid rgba(0, 242, 254, 0.3);
   margin-right: 8px;
 }
 
 .edit-task:hover {
-  background-color: #f8fafc;
+  background-color: var(--cyan-glow);
 }
 
 .delete-task {
   background-color: transparent;
   color: var(--danger);
-  border: 1px solid transparent;
+  border: 1px solid rgba(248, 81, 73, 0.3);
 }
 
 .delete-task:hover {
-  background-color: #fef2f2;
+  background-color: var(--danger-bg);
 }
